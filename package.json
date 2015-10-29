@@ -1,6 +1,6 @@
 {
   "name": "livereactload-chrome",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Hot reload content scripts of a chrome extension",
   "license": "MIT",
   "files": [
