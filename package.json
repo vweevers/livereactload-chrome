@@ -1,0 +1,39 @@
+{
+  "name": "livereactload-chrome",
+  "version": "0.0.1",
+  "description": "Hot reload content scripts of a chrome extension",
+  "license": "MIT",
+  "files": [
+    "lib",
+    "background.js",
+    "content.js"
+  ],
+  "author": {
+    "name": "Vincent Weevers",
+    "email": "mail@vincentweevers.nl",
+    "url": "http://vincentweevers.nl"
+  },
+  "scripts": {
+    "build": "babel src -d lib",
+    "prepublish": "npm run build"
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "peerDependencies": {
+    "livereactload": "2.x"
+  },
+  "keywords": [
+    "chrome",
+    "react",
+    "hotreload",
+    "livereload",
+    "livereactload"
+  ],
+  "engines": {
+    "node": ">=0.10.0",
+    "npm": ">=2.0.0"
+  },
+  "repository": "vweevers/livereactload-chrome",
+  "bugs": "https://github.com/vweevers/livereactload-chrome/issues",
+  "homepage": "https://github.com/vweevers/livereactload-chrome"
+}
