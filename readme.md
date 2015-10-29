@@ -4,6 +4,10 @@
 
 [![npm status](http://img.shields.io/npm/v/livereactload-chrome.svg?style=flat-square)](https://www.npmjs.org/package/livereactload-chrome) [![Dependency status](https://img.shields.io/david/vweevers/livereactload-chrome.svg?style=flat-square)](https://david-dm.org/vweevers/livereactload-chrome)
 
+## how it works
+
+Over a two-way [messaging channel](https://developer.chrome.com/extensions/messaging), a content script sends its livereactload client options (host and port) to a background script. The background script starts listening to that livereactload server and forwards all messages to the content script, who can then perform hot reloads.
+
 ## requirements
 
 - A separate browserify instance (with watchify and livereactload plugins) must be used for each browsing context (background, options page, content script, etc) and its entry file (e.g. `background.js`)
