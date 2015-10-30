@@ -5,8 +5,7 @@
   "license": "MIT",
   "files": [
     "lib",
-    "background.js",
-    "content.js"
+    "index.js"
   ],
   "author": {
     "name": "Vincent Weevers",

@@ -3,28 +3,34 @@
 const client = require('livereactload/lib/client/startClient')
     , scripts = new Map
 
-chrome.runtime.onConnect.addListener(port => {
-  if (port.name !== '__livereactFwd') return
+export default function startClient(scope, onMsg) {
+  // Handle background script itself
+  client(scope, onMsg)
 
-  let tabId = port.sender.tab.id
+  // Handle content scripts
+  chrome.runtime.onConnect.addListener(port => {
+    if (port.name !== '__livereactFwd') return
 
-  port.onMessage.addListener(options => {
-    // Identify the script and its server by address
-    let address = `${options.host}:${options.port}`
-      , tabs = scripts.get(address)
+    let tabId = port.sender.tab.id
 
-    if (tabs === undefined) {
-      scripts.set(address, tabs = new Map)
-      
-      // Forward websocket messages to content script contexts
-      let change = (msg) => tabs.forEach(post => post(msg))
-      client({ options }, { change })
-    }
+    port.onMessage.addListener(options => {
+      // Identify the script and its server by address
+      let address = `${options.host}:${options.port}`
+        , tabs = scripts.get(address)
 
-    tabs.set(tabId, port.postMessage.bind(port))
+      if (tabs === undefined) {
+        scripts.set(address, tabs = new Map)
 
-    port.onDisconnect.addListener(() => {
-      tabs.delete(tabId)
+        // Forward websocket messages to content script contexts
+        let change = (msg) => tabs.forEach(post => post(msg))
+        client({ options }, { change })
+      }
+
+      tabs.set(tabId, port.postMessage.bind(port))
+
+      port.onDisconnect.addListener(() => {
+        tabs.delete(tabId)
+      })
     })
   })
-})
+}
