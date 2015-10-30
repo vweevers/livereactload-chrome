@@ -4,6 +4,8 @@
 
 [![npm status](http://img.shields.io/npm/v/livereactload-chrome.svg?style=flat-square)](https://www.npmjs.org/package/livereactload-chrome) [![Dependency status](https://img.shields.io/david/vweevers/livereactload-chrome.svg?style=flat-square)](https://david-dm.org/vweevers/livereactload-chrome)
 
+![demo](https://github.com/vweevers/livereactload-chrome/raw/master/demo.gif)
+
 ## how it works
 
 Over a two-way [messaging channel](https://developer.chrome.com/extensions/messaging), a content script sends its `livereactload` client options (host and port) to a background script. The background script starts listening to that `livereactload` server and forwards all messages to the content script, who can then perform hot reloads. The background script can also hot reload itself (so to speak). For other browsing contexts (options page, browser action) the default `livereactload` client is used.
@@ -17,13 +19,13 @@ Over a two-way [messaging channel](https://developer.chrome.com/extensions/messa
 
 ## usage
 
-Install `livereactload-chrome` and follow the [installation instructions](https://github.com/milankinen/livereactload#installation) of `livereactload`, but install the temporary branch `vweevers/livereactload#feature/custom-client` instead of `livereactload`. When browserifying entry files, use the custom client:
+Install `livereactload-chrome` and follow the [installation instructions](https://github.com/milankinen/livereactload#installation) of `livereactload`. When browserifying your entry files, specify the custom client:
 
 ```js
 b.plugin('livereactload', { client: 'livereactload-chrome', port: port++ }
 ```
 
-The clients detects in which context it's running (background, content or other) and takes appropriate action.
+The clients detects its context (background, content or other) and takes appropriate action.
 
 A complete example will come soon.
 
