@@ -19,7 +19,7 @@
   "dependencies": {},
   "devDependencies": {},
   "peerDependencies": {
-    "livereactload": "2.x"
+    "livereactload": "^2.1.0"
   },
   "keywords": [
     "chrome",
