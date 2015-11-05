@@ -12,6 +12,8 @@ Over a two-way [messaging channel](https://developer.chrome.com/extensions/messa
 
 ## requirements
 
+- The extension must be allowed to use `eval()`. Add `content_security_policy: "script-src 'self' 'unsafe-eval'; object-src 'self'"` to your manifest. Preferably add a dev-only build step to do this, or be sure to remove the `content_security_policy` field before
+publishing your extension.
 - The extension must have a background script (it can be empty), if you want hot reloading for content scripts.
 - A separate browserify instance must be used for each browsing context and its entry file
 - Each entry file must be located in its own directory. E.g. `app/background/index.js` and `app/content-script/index.js`, but not `app/background.js` and `app/content-script.js`.
